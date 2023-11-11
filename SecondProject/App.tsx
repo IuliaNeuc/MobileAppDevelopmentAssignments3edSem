@@ -132,6 +132,7 @@
  */
 
 import React from 'react';
+import { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -145,10 +146,16 @@ import ToDoForm from './ToDoForm';
 
 
 function App(): JSX.Element  {
+  const[tasks, setTasks] = useState([
+    'Do laundry',
+    'Go to gym',
+    'Walk dog'
+  ]);
+
   return (
     <SafeAreaView>
       <ScrollView>
-        <ToDoList/>
+        <ToDoList tasks = {tasks}/>
       </ScrollView>
       <View style={styles.form}>
         <ToDoForm/>
