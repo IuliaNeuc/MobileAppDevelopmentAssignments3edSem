@@ -146,11 +146,15 @@ import ToDoForm from './ToDoForm';
 
 
 function App(): JSX.Element  {
-  const[tasks, setTasks] = useState([
+  const[tasks, setTasks] = useState<string[]>([
     'Do laundry',
     'Go to gym',
     'Walk dog'
   ]);
+
+  const addTask = (task: string) =>{
+    setTasks([...tasks, task]);
+  };
 
   return (
     <SafeAreaView>
@@ -158,7 +162,7 @@ function App(): JSX.Element  {
         <ToDoList tasks = {tasks}/>
       </ScrollView>
       <View style={styles.form}>
-        <ToDoForm/>
+        <ToDoForm addTask={addTask}/>
       </View>
     </SafeAreaView>
   );
