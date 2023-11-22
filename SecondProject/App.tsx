@@ -132,39 +132,32 @@
  */
 
 import React from 'react';
-import { useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Pressable,
-  View,  
-  ScrollView  
+
+import { 
+  StyleSheet
+  
 } from 'react-native';
 
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen'; // Import the HomeScreen component
+import AboutScreen from './screens/AboutScreen'; // Import the AboutScreen component
 
 
 function App(): JSX.Element  {
-  const[tasks, setTasks] = useState<string[]>([
-    'Do laundry',
-    'Go to gym',
-    'Walk dog'
-  ]);
 
-  const addTask = (task: string) =>{
-    setTasks([...tasks, task]);
-  };
+   const Stack = createStackNavigator();
+
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <ToDoList tasks = {tasks}/>
-      </ScrollView>
-      <View style={styles.form}>
-        <ToDoForm addTask={addTask}/>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
